@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Church Links</title>
+    <style>
+        :root {
+            --primary: #4b6cb7;
+            --secondary: #421848;
+            --accent: #e74c3c;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at 20% 50%, 
+                          var(--primary) 0%,
+                          var(--secondary) 40%, 
+                          var(--accent) 100%);
+            background-size: 200% 200%;
+            animation: gradientBG 12s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 5rem;
+            color: var(--light);
+            padding: 1.25rem;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 37.5rem;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+            margin: auto;
+            padding: 1.25rem 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(1.25rem); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo-container {
+            margin-bottom: 1.875rem;
+            cursor: pointer;
+        }
+
+        .logo {
+            width: 10rem;
+            height: 10rem;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 0.1875rem solid var(--light);
+            box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.2);
+            opacity: 1;
+            animation: pulse 2s infinite;
+            transition: all 0.5s ease;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .logo.active {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .church-name {
+            font-size: 2rem;
+            margin: 0.9375rem 0 0.3125rem;
+            font-weight: 700;
+            text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
+        }
+
+        .church-desc {
+            font-size: 1rem;
+            margin-bottom: 1.875rem;
+            opacity: 0.9;
+            max-width: 31.25rem;
+        }
+
+        .links-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.9375rem;
+            width: 100%;
+        }
+
+        .link-button {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(0.625rem);
+            border: 0.0625rem solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.75rem;
+            padding: 0.9375rem 1.25rem;
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .link-button:hover {
+            transform: translateY(-0.1875rem);
+            box-shadow: 0 0.5rem 1.5625rem rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .link-button:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.2);
+            transition: all 0.1s ease;
+        }
+
+        .link-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .link-button:hover::after {
+            transform: translateX(100%);
+        }
+
+        .link-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            margin-right: 0.9375rem;
+            border-radius: 0.5rem;
+            object-fit: cover;
+        }
+
+        .link-text {
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        @media (max-width: 600px) {
+            .church-name {
+                font-size: 1.8rem;
+                margin: 0.625rem 0;
+                padding: 0 0.625rem;
+            }
+            
+            .church-desc {
+                font-size: 1rem;
+                padding: 0 1.25rem;
+                line-height: 1.4;
+            }
+            
+            .link-button {
+                padding: 1rem 1.25rem;
+                font-size: 1.1rem;
+                margin: 0 0.625rem;
+                border-radius: 0.625rem;
+            }
+            
+            .link-icon {
+                width: 2.25rem;
+                height: 2.25rem;
+                margin-right: 0.75rem;
+            }
+            
+            /* Enhanced touch feedback */
+            .link-button:active {
+                transform: scale(0.98);
+                background: rgba(255,255,255,0.3);
+            }
+        }
+
+        /* Footer styles */
+        .footer {
+            margin-top: 1.5rem;
+            text-align: center;
+            width: 100%;
+            padding: 1rem 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Add more padding to sections for mobile */
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.25rem;
+            }
+            
+            .links-container {
+                padding: 0 1rem;
+            }
+            
+            .link-button {
+                margin: 0 0.5rem;
+            }
+            .logo {
+                width: 7rem;
+                height: 7rem;
+            }
+        }
+
+        /* Special styling for very small screens */
+        @media (max-width: 400px) {
+            body {
+                padding: 0.625rem;
+            }
+            
+            .logo {
+                width: 6.5rem;
+                height: 6.5rem;
+            }
+        }
+
+        /* Image Slider Styles */
+        .image-slider-section {
+            width: 100%;
+            max-width: 700px;
+            margin: 2.5rem auto 0 auto;
+            padding: 1rem 0.5rem 1.5rem 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(34, 34, 51, 0.25);
+            border-radius: 1.5rem;
+            box-shadow: 0 0.5rem 2rem rgba(0,0,0,0.10);
+            backdrop-filter: blur(4px);
+            overflow: hidden;
+        }
+        .image-slider {
+            display: flex;
+            gap: 0.5rem; /* lebih rapat */
+            align-items: center;
+            animation: slider-scroll 32s linear infinite;
+            width: max-content;
+        }
+        .image-slider img {
+            width: 11rem;
+            height: 7.5rem;
+            object-fit: cover;
+            border-radius: 1rem;
+            box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.18);
+            border: 2px solid rgba(255,255,255,0.25);
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: #fff;
+            opacity: 0.95;
+        }
+        .image-slider img:hover {
+            transform: scale(1.08) rotate(-2deg);
+            box-shadow: 0 0.5rem 2rem rgba(0,0,0,0.25);
+            opacity: 1;
+            z-index: 2;
+        }
+        @keyframes slider-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        /* Duplicate images for seamless loop */
+        .image-slider {
+            /* Will be duplicated in JS for infinite effect */
+        }
+        @media (max-width: 800px) {
+            .image-slider-section {
+                max-width: 98vw;
+                padding: 1rem 0.1rem 1rem 0.1rem;
+            }
+            .image-slider img {
+                width: 9rem;
+                height: 6rem;
+            }
+        }
+        @media (max-width: 500px) {
+            .image-slider-section {
+                border-radius: 1rem;
+                margin-top: 1.2rem;
+            }
+            .image-slider img {
+                width: 8.5rem;
+                height: 6rem;
+                border-radius: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container" id="logoTrigger">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPO9hbxj5up6wtDL8nDuFSV7i3qyFC6wAEik4dOhcCw2vkfHcqywaNxg3Ax4hzffnEg0KZszMaGNZZyaYD-e9F2eGYYi6a82ZQMNPVCs3XbcHjc5GEyQ3NjQ0goT12clXrn305uHetkwT3Hjj2gTzLuiS0wXL-SUs3Yaye039UOtUXVABoct-r-2mcGY0k/s400/WhatsApp%20Image%202025-07-24%20at%2018.13.32_f7601ac5.jpg" alt="Church logo featuring a cross with stylized christian symbol, elegant golden design on dark blue background" class="logo" id="churchLogo">
+            <h1 class="church-name">GKDI Semarang</h1>
+            <p class="church-desc">We Gather here To Know God and Make God Known.</p>
+        </div>
+        
+        <div class="links-container">
+            <a href="https://www.youtube.com/channel/UCVu3pMPC3K_ja6LN7whCwtA" target="_blank" class="link-button" id="youtubeLink">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a5a697db-5f35-4d1b-be8c-5a1fc9b93ef6.png" alt="YouTube icon, red play button on white background, simple flat design" class="link-icon">
+                <span class="link-text">YouTube Kami</span>
+            </a>
+            
+            <a href="https://api.whatsapp.com/send?phone=6281996660002&text=Hallo,Saya+Mau+Bertanya+Perihal...." target="_blank" class="link-button" id="counselingLink">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/db4196d6-9772-4a62-89ad-8a85b70f36ef.png" alt="Counseling icon, two hands holding a heart with coffee cup, warm colors, friendly style" class="link-icon">
+                <span class="link-text">Layanan Konseling (Admin1)</span>
+            </a>
+            
+            <a href="https://api.whatsapp.com/send?phone=6281803333357&text=Hallo,Saya+Mau+Bertanya+Perihal...." target="_blank" class="link-button" id="counselingLink">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/db4196d6-9772-4a62-89ad-8a85b70f36ef.png" alt="Counseling icon, two hands holding a heart with coffee cup, warm colors, friendly style" class="link-icon">
+                <span class="link-text">Layanan Konseling (Admin2)</span>
+            </a>
+
+            <a href="https://goo.gl/maps/3717ftmFFnpeL1nA8" target="_blank" class="link-button" id="locationLink">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9e5ca6a2-72ee-4ac1-82d3-7451a40f8e07.png" alt="Map location pin icon, red pin with shadow, realistic but slightly stylized" class="link-icon">
+                <span class="link-text">Lokasi Gereja</span>
+            </a>
+            
+            <a href="https://gkdi.org/" class="link-button" target="_blank" id="websiteLink">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/15bf71a6-cbd0-4796-a28d-6a4e78df5b71.png" alt="Globe icon with church building silhouette, blue and white colors, clean design" class="link-icon">
+                <span class="link-text">Website GKDI</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Image Slider Section -->
+    <section class="image-slider-section">
+        <div class="image-slider" id="imageSlider">
+            <!-- 20 images, replace src with your images if needed -->
+            <img src="https://ik.imagekit.io/tfsqxv2ne/IMG_5690%20(1).JPG?updatedAt=1753682342301" alt="Slider 1">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/IMG-20250720-WA0043.jpg?updatedAt=1753681734765" alt="Slider 2">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/IMG_5690%20(1).JPG?updatedAt=1753682342301" alt="Slider 3">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/IMG-20250531-WA0023.jpg?updatedAt=1753682286714" alt="Slider 4">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/IMG-20250720-WA0043.jpg?updatedAt=1753681734765" alt="Slider 5">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/1748690529057.jpg?updatedAt=1753682187434" alt="Slider 6">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/IMG-20250531-WA0020.jpg?updatedAt=1753682286676" alt="Slider 7">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/IMG-20250529-WA0012.jpg?updatedAt=1753682285997" alt="Slider 8">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/1748690538138.jpg?updatedAt=1753682227227" alt="Slider 9">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/1748690529057.jpg?updatedAt=1753682187434" alt="Slider 10">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/IMG-20250531-WA0023.jpg?updatedAt=1753682286714" alt="Slider 11">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/IMG-20250720-WA0043.jpg?updatedAt=1753681734765" alt="Slider 12">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/IMG-20250531-WA0020.jpg?updatedAt=1753682286676" alt="Slider 13">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/IMG_5690%20(1).JPG?updatedAt=1753682342301" alt="Slider 14">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/1748690529057.jpg?updatedAt=1753682187434" alt="Slider 15">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/1748690538138.jpg?updatedAt=1753682227227" alt="Slider 16">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/IMG-20250720-WA0043.jpg?updatedAt=1753681734765" alt="Slider 17">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/IMG-20250529-WA0012.jpg?updatedAt=1753682285997" alt="Slider 18">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/IMG_5690%20(1).JPG?updatedAt=1753682342301" alt="Slider 19">
+            <img src="https://ik.imagekit.io/tfsqxv2ne/IMG-20250531-WA0020.jpg?updatedAt=1753682286676" alt="Slider 20">
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Gereja Kristus Di Indonesia, Semarang. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Automatically apply active class to logo
+            document.getElementById('churchLogo').classList.add('active');
+            
+            // Button animations
+            const buttons = document.querySelectorAll('.link-button');
+            
+            buttons.forEach(button => {
+                button.addEventListener('mousedown', function() {
+                    this.style.transform = 'scale(0.95)';
+                });
+                
+                button.addEventListener('mouseup', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+            
+            // Background animation enhancement
+            document.body.addEventListener('mousemove', function(e) {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                document.body.style.backgroundPosition = `${x * 100}% ${y * 100}%`;
+            });
+            
+            // Duplicate slider images for seamless infinite scroll
+            const slider = document.getElementById('imageSlider');
+            if (slider) {
+                slider.innerHTML += slider.innerHTML;
+            }
+        });
+    </script>
+</body>
+</html>
